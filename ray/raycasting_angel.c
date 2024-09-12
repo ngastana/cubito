@@ -6,7 +6,7 @@
 /*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:54:52 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/12 18:26:38 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:09:38 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void ft_draw(int x, int start, int end, int color, t_game *cube)
 {
-    char *pixel;
+	char *pixel;
     int i = start;
+	
     while (i < end)
     {
         pixel = cube->mlx->data_addr + (i * cube->mlx->size_line + x * (cube->mlx->bpp / 8));
+		// mlx_pixel_put(cube->mlx->data_addr, cube->mlx->win_ptr, x, i, color);
         *(unsigned int*)pixel = color;
         i++;
     }
@@ -88,6 +90,8 @@ void raycasting_angel(t_game *cube)
 			side = 0;
 		}
 		cube->ray_length = cube->ray_length * sin(PI/2 + ray_angle - cube->angle);
+		if (cube->ray_length < 0.5)
+			cube->ray_length += 0.1;
 		int lineHeight = (int)(cube->mlx->height / cube->ray_length);
         draw_start = -lineHeight / 2 + cube->mlx->height / 2;
 		if (draw_start < 0)
