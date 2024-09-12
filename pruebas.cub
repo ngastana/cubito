@@ -1,0 +1,15 @@
+NO ./textures/coins2.xpm
+SO ./textures/walls.xpm
+WE ./textures/walls.xpm
+EA ./textures/walls.xpm
+
+F 220,100,0
+C 225,30,0
+
+1111111
+1000001
+1000001
+111W001
+1000001
+1000001
+1111111
