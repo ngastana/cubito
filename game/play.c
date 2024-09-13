@@ -6,7 +6,7 @@
 /*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:58:45 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/12 19:01:47 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:44:54 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,37 @@ int khook(int keycode, t_game *cube)
 	cube->angle = normalize_angle(cube->angle);
 	if (keycode == 65307)  // ESC key
 		close_window(cube);
-	else if ((keycode == 65364 && ((cube->angle > PI/4 && cube->angle < 3*PI/4) || (cube->angle > 5*PI/4 && cube->angle < 7*PI/4))) || (keycode == 65362 && !((cube->angle > PI/4 && cube->angle < 3*PI/4) || (cube->angle > 5*PI/4 && cube->angle < 7*PI/4)))) // Flecha arriba (mover adelante)
+	else if (keycode == 65362)
 	{
-		if (cube->map[(int)(cube->plyr_y - sin(cube->angle)* moveSpeed)][(int)(cube->plyr_x + cos(cube->angle)* moveSpeed)] == '0')
+		printf(" DONDE ESTOY X: %f\n", cube->plyr_x);
+		printf(" DONDE ESTOY Y: %f\n", cube->plyr_y);
+		printf(" QUE MURO ESTOY  MIRANO X: %i\n", (int)(cube->plyr_x + cos(cube->angle)* moveSpeed));
+		printf(" QUE MURO ESTOY  MIRANO Y: %i\n", (int)(cube->plyr_y - sin(cube->angle)* moveSpeed));
+		if (cube->map[(int)(cube->plyr_y + sin(cube->angle)* moveSpeed)][(int)(cube->plyr_x + cos(cube->angle)* moveSpeed)] == '0')
 		{
 			cube->plyr_x += cos(cube->angle)* moveSpeed;
-			cube->plyr_y -= sin(cube->angle)* moveSpeed;
+			cube->plyr_y += sin(cube->angle)* moveSpeed;
 		}
 	}
-	else if ((keycode == 65362 && ((cube->angle > PI/4 && cube->angle < 3*PI/4) || (cube->angle > 5*PI/4 && cube->angle < 7*PI/4))) ||  (keycode == 65364 && !((cube->angle > PI/4 && cube->angle < 3*PI/4) || (cube->angle > 5*PI/4 && cube->angle < 7*PI/4)))) // Flecha abajo (mover atrás)
+	else if (keycode == 65364)
 	{
-		if (cube->map[(int)(cube->plyr_y + sin(cube->angle)* moveSpeed)][(int)(cube->plyr_x - cos(cube->angle)* moveSpeed)] == '0')
+		printf(" DONDE ESTOY X: %f\n", cube->plyr_x);
+		printf(" DONDE ESTOY Y: %f\n", cube->plyr_y);
+		printf(" QUE MURO ESTOY  MIRANO X: %i\n", (int)(cube->plyr_x - cos(cube->angle)* moveSpeed));
+		printf(" QUE MURO ESTOY  MIRANO Y: %i\n", (int)(cube->plyr_y - sin(cube->angle)* moveSpeed));
+
+		if (cube->map[(int)(cube->plyr_y - sin(cube->angle)* moveSpeed)][(int)(cube->plyr_x - cos(cube->angle)* moveSpeed)] == '0')
 		{ 
 			cube->plyr_x -= cos(cube->angle)* moveSpeed;
-			cube->plyr_y += sin(cube->angle)* moveSpeed;
+			cube->plyr_y -= sin(cube->angle)* moveSpeed;
 		}
 	}
 	else if (keycode == 65363) //mover derecha
 	{
+		printf(" DONDE ESTOY X: %f\n", cube->plyr_x);
+		printf(" DONDE ESTOY Y: %f\n", cube->plyr_y);
+		printf(" QUE MURO ESTOY  MIRANO X: %i\n", (int)(cube->plyr_x - sin(cube->angle)* moveSpeed));
+		printf(" QUE MURO ESTOY  MIRANO Y: %i\n", (int)(cube->plyr_y + cos(cube->angle)* moveSpeed));
 		if (cube->map[(int)(cube->plyr_y + cos(cube->angle)* moveSpeed)][(int)(cube->plyr_x - sin(cube->angle)* moveSpeed)] == '0')
 		{
 			cube->plyr_x -= sin(cube->angle)* moveSpeed;
@@ -46,6 +59,10 @@ int khook(int keycode, t_game *cube)
 	}
 	else if (keycode == 65361) //mover izquierda
 	{
+		printf(" DONDE ESTOY X: %f\n", cube->plyr_x);
+		printf(" DONDE ESTOY Y: %f\n", cube->plyr_y);
+		printf(" QUE MURO ESTOY  MIRANO X: %i\n", (int)(cube->plyr_x + sin(cube->angle)* moveSpeed));
+		printf(" QUE MURO ESTOY  MIRANO Y: %i\n", (int)((cube->plyr_y - cos(cube->angle)* moveSpeed)));
 		if (cube->map[(int)(cube->plyr_y - cos(cube->angle)* moveSpeed)][(int)(cube->plyr_x + sin(cube->angle)* moveSpeed)] == '0')
 		{
 			cube->plyr_x += sin(cube->angle)* moveSpeed;
@@ -59,5 +76,6 @@ int khook(int keycode, t_game *cube)
 	memset(cube->mlx->data_addr, 0, cube->mlx->height * cube->mlx->size_line);
 	raycasting_angel(cube);
 	mlx_put_image_to_window(cube->mlx->mlx_ptr, cube->mlx->win_ptr, cube->mlx->buffer, 0, 0);
+	mlx_do_sync(cube->mlx->mlx_ptr);
 	return (0);
 }

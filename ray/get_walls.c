@@ -6,7 +6,7 @@
 /*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 09:21:34 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/12 13:56:59 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:16:05 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,76 +22,77 @@ bool is_wall(int x_wall, int y_wall, t_game cube)
 		return (false);
 }
 
-// double get_v(t_game *cube, double ray_angle)
-// {
-// 	float	x_step;
-// 	float	y_step;
+double get_v(t_game *cube, double ray_angle)
+{
+	float	x_step;
+	float	y_step;
+	bool	ray_facing_right;
+	int		sum_h;
 
-//     ray_angle = normalize_angle(ray_angle);
-//     bool ray_facing_right = ray_angle < PI / 2 || ray_angle > 3 * PI / 2;
-//     bool ray_facing_left = !ray_facing_right;
-// 	cube->x_wall_v = floor(cube->plyr_x);
-// 	cube->y_wall_v = ceil(cube->plyr_y); //+ (-cube->x_wall_v + cube->plyr_x) * tan(ray_angle);
-// 	printf("x_wall_v %f\n", cube->x_wall_v);
-// 	printf("y_wall_v %f\n", cube->y_wall_v);
-//     if (cube->x_wall_v > (cube->map_width -1))
-//         cube->x_wall_v = cube->map_width -1;
-//     if (cube->y_wall_v > (cube->map_height -1))
-//         cube->y_wall_v = cube->map_height -1;
-//     x_step = ray_facing_right ? 1 : -1;
-//     y_step = x_step * tan(ray_angle);
-//     while (!is_wall((int)(cube->x_wall_v - (ray_facing_left ? 1 : 0)), (ceil)(cube->y_wall_v), *cube))
-//     {
-//         cube->x_wall_v += x_step;
-//         cube->y_wall_v -= y_step;
-// 		if (cube->x_wall_v > (cube->map_width -1))
-// 		{
-// 			return 1000000;
-// 		}
-// 		if (cube->y_wall_v > (cube->map_height -1))
-// 		{
-// 			return 10000000;
-// 		}
-//     }
-// 	return (sqrt(pow(cube->x_wall_v - cube->plyr_x, 2) + pow(cube->y_wall_v - cube->plyr_y, 2)));
-// }
+	x_step = 1;
+	sum_h = 1;
+	ray_angle = normalize_angle(ray_angle);
+	ray_facing_right = ray_angle < PI / 2 || ray_angle > 3 * PI / 2;
+	if (ray_facing_right)
+	{
+		cube->x_wall_v = floor(cube->plyr_x) + 1;
+		sum_h = 0;
+	}
+	else
+	{
+		cube->x_wall_v = floor(cube->plyr_x);
+		x_step = -1;
+	}
+	cube->y_wall_v = cube->plyr_y + (cube->x_wall_v - cube->plyr_x) * tan(ray_angle);
+	y_step = x_step * tan(ray_angle);
+	if (cube->x_wall_v >= cube->map_width || cube->x_wall_v < 0 || cube->y_wall_v >= cube->map_height || cube->y_wall_v < 0)
+		return 1000000;
+	while (!is_wall((int)(cube->x_wall_v - sum_h), (int)(cube->y_wall_v), *cube))
+	{
+		cube->x_wall_v += x_step;
+		cube->y_wall_v += y_step;
+		if (cube->x_wall_v >= cube->map_width || cube->x_wall_v < 0 ||
+			cube->y_wall_v >= cube->map_height || cube->y_wall_v < 0)
+			return 1000000;
+	}
+	return (sqrt(pow(cube->x_wall_v - cube->plyr_x, 2) + pow(cube->y_wall_v - cube->plyr_y, 2)));
+}
 
-// double get_h(t_game *cube, double ray_angle)
-// {
-// 	float	x_step;
-// 	float	y_step;
+double get_h(t_game *cube, double ray_angle)
+{
+	float	x_step;
+	float	y_step;
+	bool	ray_facing_up;
+	int		sum_h;
 	
-// 	ray_angle = normalize_angle(ray_angle);
-// 	bool ray_facing_down = ray_angle > 0 && ray_angle < PI;
-// 	bool ray_facing_up = !ray_facing_down;
-// 	cube->y_wall_h = floor(cube->plyr_y);
-// 	cube->x_wall_h = ceil(cube->plyr_x); //+ (cube->y_wall_h - cube->plyr_y) / tan(ray_angle);
-// 	y_step = ray_facing_down ? -1 : 1;
-// /* 	if (ray_angle < PI)
-// 		cube->y_wall_h--;
-// 	else
-// 		cube->y_wall_h++;*/
-// 	x_step = y_step / tan(ray_angle);
-// 	if (cube->x_wall_h > (cube->map_width -1))
-// 		cube->x_wall_h = cube->map_width -1;
-// 	if (cube->y_wall_h > (cube->map_height -1))
-// 		cube->y_wall_h = cube->map_height -1;
-// 	while (!is_wall((int)cube->x_wall_h, (int)(cube->y_wall_h - (ray_facing_up ? 1 : 0)), *cube))
-// 	{
-// 		cube->x_wall_h += x_step;
-// 		cube->y_wall_h -= y_step;
-// 		if (cube->x_wall_h > (cube->map_width -1))
-// 		{
-// 			return 100000000;
-// 		}
-// 		if (cube->y_wall_h > (cube->map_height -1))
-// 		{
-// 			return 100000000;
-// 		}
-// 	}
-// 	return (sqrt(pow(cube->y_wall_h - cube->plyr_x, 2) + pow(cube->x_wall_h - cube->plyr_y, 2)));
-// }
-
+	y_step = 1;
+	sum_h = 1;
+	ray_angle = normalize_angle(ray_angle);
+	ray_facing_up = ray_angle > 0 && ray_angle < PI;
+	if (ray_facing_up)
+	{
+		cube->y_wall_h = floor(cube->plyr_y) + 1;
+		sum_h = 0;
+	}
+	else
+	{
+		cube->y_wall_h = floor(cube->plyr_y);
+		y_step = -1;
+	}
+	cube->x_wall_h = cube->plyr_x + (cube->y_wall_h - cube->plyr_y) / tan(ray_angle);
+	if (cube->x_wall_h >= cube->map_width || cube->x_wall_h < 0 || cube->y_wall_h >= cube->map_height || cube->y_wall_h < 0)
+		return 1000000;
+	x_step = y_step / tan(ray_angle);
+	while (!is_wall((int)cube->x_wall_h, (int)(cube->y_wall_h - sum_h), *cube))
+	{
+		cube->x_wall_h += x_step;
+		cube->y_wall_h += y_step;
+		if (cube->x_wall_h >= cube->map_width || cube->x_wall_h < 0 || cube->y_wall_h >= cube->map_height || cube->y_wall_h < 0)
+			return 1000000;
+	}
+	return (sqrt(pow(cube->x_wall_h - cube->plyr_x, 2) + pow(cube->y_wall_h - cube->plyr_y, 2)));
+}
+/* 
 double get_v(t_game *cube, double ray_angle)
 {
     float x_step;
@@ -169,3 +170,4 @@ double get_h(t_game *cube, double ray_angle)
     // Retorno de la distancia calculada
     return sqrt(pow(cube->x_wall_h - cube->plyr_x, 2) + pow(cube->y_wall_h - cube->plyr_y, 2));
 }
+ */

@@ -1,7 +1,7 @@
-NO ./textures/coins2.xpm
-SO ./textures/walls.xpm
-WE ./textures/walls.xpm
-EA ./textures/walls.xpm
+NO ./textures/ave_cesar.xpm
+SO ./textures/ave_cesar.xpm
+WE ./textures/iportil.xpm
+EA ./textures/iportil.xpm
 
 F 220,100,0
 C 225,30,0

@@ -120,7 +120,6 @@ void	ft_start_game(t_game *cube);
 void    ft_get_images(t_game *cube);
 
 		/* Raycasting */
-void	init_the_player(t_game *cube);
 void	raycasting_angel(t_game *cube);
 void	ft_draw(int x, int start, int end, int color, t_game *cube);
 double 	get_v(t_game *cube, double ray_angle);

@@ -6,7 +6,7 @@
 /*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:56:55 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/12 18:16:57 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:46:55 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void init_the_player(t_game *cube)
 {
 	cube->plyr_x += 0.5;
 	cube->plyr_y += 0.5;
-//	cube->fov_rad = FOV * PI / 180;
 	cube->mlx->width = 800;
 	cube->mlx->height = 600;
 	if (cube->mlx->direction == 'W')

@@ -6,7 +6,7 @@
 /*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:54:52 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/12 19:09:38 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:46:28 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 void ft_draw(int x, int start, int end, int color, t_game *cube)
 {
 	char *pixel;
-    int i = start;
 	
-    while (i < end)
+    while (start < end)
     {
-        pixel = cube->mlx->data_addr + (i * cube->mlx->size_line + x * (cube->mlx->bpp / 8));
-		// mlx_pixel_put(cube->mlx->data_addr, cube->mlx->win_ptr, x, i, color);
+        pixel = cube->mlx->data_addr + (start * cube->mlx->size_line) + (x * (cube->mlx->bpp / 8));
         *(unsigned int*)pixel = color;
-        i++;
+        start++;
     }
 }
 
@@ -39,14 +37,14 @@ void ft_wall(void *img_ptr, int ray, int start, int end, t_game *cube)
     double          tex_pos;
 
     img_data = mlx_get_data_addr(img_ptr, &bpp, &size_line, &endian);
-    int img_width = 80;
-    int img_height = 80;
-    step = (double)img_height / (end - start);
+    int img_width = 55;
+    int img_height = 55;
+	step = (double)img_height / (end - start);
     tex_pos = 0;
 
     for (y = start; y < end; y++)
     {
-        tex_y = (int)tex_pos & (img_height - 1);
+  		tex_y = (int)tex_pos & (img_height);
         tex_pos += step;
         pixel = img_data + (tex_y * size_line + (ray % img_width) * (bpp / 8));
         color = *(unsigned int *)pixel;
@@ -90,10 +88,10 @@ void raycasting_angel(t_game *cube)
 			side = 0;
 		}
 		cube->ray_length = cube->ray_length * sin(PI/2 + ray_angle - cube->angle);
-		if (cube->ray_length < 0.5)
+		if (cube->ray_length < 0.1)
 			cube->ray_length += 0.1;
 		int lineHeight = (int)(cube->mlx->height / cube->ray_length);
-        draw_start = -lineHeight / 2 + cube->mlx->height / 2;
+		draw_start = -lineHeight / 2 + cube->mlx->height / 2;
 		if (draw_start < 0)
 			draw_start = 0;
 		draw_end = lineHeight / 2 + cube->mlx->height / 2;
@@ -103,7 +101,10 @@ void raycasting_angel(t_game *cube)
 		int color = 0xFF0000;
 		if (side == 1) color /= 2;
 		ft_draw(ray, 0, draw_start, cube->ceiling, cube);
-		ft_wall(cube->mlx->north, ray, draw_start, draw_end, cube);
+		if (side == 0)
+			ft_wall(cube->mlx->north, ray, draw_start, draw_end, cube);
+		else 
+			ft_wall(cube->mlx->west, ray, draw_start, draw_end, cube);			
 		ft_draw(ray, draw_end, cube->mlx->height, cube->floor, cube);
 		ray++;
 	}

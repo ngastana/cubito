@@ -6,7 +6,7 @@
 /*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:38:57 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/12 10:12:38 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/13 10:37:59 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int ft_check_map_content(t_game *cube)
 			{
 				flag++;
 				cube->plyr_x = j;
-				cube->plyr_y = i;				
+				cube->plyr_y = i;
 				cube->mlx->direction = cube->map[i][j];
 				cube->map[i][j]  = '0';
 			}
