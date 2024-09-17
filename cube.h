@@ -130,5 +130,4 @@ double 	normalize_angle(double angle);
 int		khook(int keycode, t_game *cube);
 int		lhook(t_game *cube);
 
-
 #endif

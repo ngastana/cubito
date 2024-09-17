@@ -1,7 +1,7 @@
 NO ./textures/ave_cesar.xpm
 SO ./textures/ave_cesar.xpm
-WE ./textures/iportil.xpm
-EA ./textures/iportil.xpm
+WE ./textures/space.xpm
+EA ./textures/space.xpm
 
 F 220,100,0
 C 225,30,0
