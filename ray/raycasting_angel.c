@@ -6,12 +6,11 @@
 /*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:54:52 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/17 13:48:41 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:51:50 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
-#include <sys/wait.h>
 
 void ft_draw(int x, int start, int end, int color, t_game *cube)
 {
@@ -42,7 +41,7 @@ void ft_wall(void *img_ptr, int ray, int start, int end, t_game *cube, double x_
 	int tex_x = (int)(x_wall * img_width);
     tex_pos = 0;
 	step = (double)img_height / (end - start);
-    for (y = start; y <= end; y++)
+    for (y = start; y < end; y++)
     {
         pixel = img_data + ((int)tex_pos % img_height * size_line + (tex_x) * (bpp / 8));
         tex_pos += step;

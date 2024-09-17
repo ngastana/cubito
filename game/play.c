@@ -6,7 +6,7 @@
 /*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:58:45 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/13 12:44:54 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:54:27 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ int khook(int keycode, t_game *cube)
 		close_window(cube);
 	else if (keycode == 65362)
 	{
-		printf(" DONDE ESTOY X: %f\n", cube->plyr_x);
-		printf(" DONDE ESTOY Y: %f\n", cube->plyr_y);
-		printf(" QUE MURO ESTOY  MIRANO X: %i\n", (int)(cube->plyr_x + cos(cube->angle)* moveSpeed));
-		printf(" QUE MURO ESTOY  MIRANO Y: %i\n", (int)(cube->plyr_y - sin(cube->angle)* moveSpeed));
 		if (cube->map[(int)(cube->plyr_y + sin(cube->angle)* moveSpeed)][(int)(cube->plyr_x + cos(cube->angle)* moveSpeed)] == '0')
 		{
 			cube->plyr_x += cos(cube->angle)* moveSpeed;
@@ -34,11 +30,6 @@ int khook(int keycode, t_game *cube)
 	}
 	else if (keycode == 65364)
 	{
-		printf(" DONDE ESTOY X: %f\n", cube->plyr_x);
-		printf(" DONDE ESTOY Y: %f\n", cube->plyr_y);
-		printf(" QUE MURO ESTOY  MIRANO X: %i\n", (int)(cube->plyr_x - cos(cube->angle)* moveSpeed));
-		printf(" QUE MURO ESTOY  MIRANO Y: %i\n", (int)(cube->plyr_y - sin(cube->angle)* moveSpeed));
-
 		if (cube->map[(int)(cube->plyr_y - sin(cube->angle)* moveSpeed)][(int)(cube->plyr_x - cos(cube->angle)* moveSpeed)] == '0')
 		{ 
 			cube->plyr_x -= cos(cube->angle)* moveSpeed;
@@ -47,10 +38,6 @@ int khook(int keycode, t_game *cube)
 	}
 	else if (keycode == 65363) //mover derecha
 	{
-		printf(" DONDE ESTOY X: %f\n", cube->plyr_x);
-		printf(" DONDE ESTOY Y: %f\n", cube->plyr_y);
-		printf(" QUE MURO ESTOY  MIRANO X: %i\n", (int)(cube->plyr_x - sin(cube->angle)* moveSpeed));
-		printf(" QUE MURO ESTOY  MIRANO Y: %i\n", (int)(cube->plyr_y + cos(cube->angle)* moveSpeed));
 		if (cube->map[(int)(cube->plyr_y + cos(cube->angle)* moveSpeed)][(int)(cube->plyr_x - sin(cube->angle)* moveSpeed)] == '0')
 		{
 			cube->plyr_x -= sin(cube->angle)* moveSpeed;
@@ -59,10 +46,6 @@ int khook(int keycode, t_game *cube)
 	}
 	else if (keycode == 65361) //mover izquierda
 	{
-		printf(" DONDE ESTOY X: %f\n", cube->plyr_x);
-		printf(" DONDE ESTOY Y: %f\n", cube->plyr_y);
-		printf(" QUE MURO ESTOY  MIRANO X: %i\n", (int)(cube->plyr_x + sin(cube->angle)* moveSpeed));
-		printf(" QUE MURO ESTOY  MIRANO Y: %i\n", (int)((cube->plyr_y - cos(cube->angle)* moveSpeed)));
 		if (cube->map[(int)(cube->plyr_y - cos(cube->angle)* moveSpeed)][(int)(cube->plyr_x + sin(cube->angle)* moveSpeed)] == '0')
 		{
 			cube->plyr_x += sin(cube->angle)* moveSpeed;
