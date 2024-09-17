@@ -3,32 +3,35 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+         #
+#    By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/03 16:53:31 by ngastana          #+#    #+#              #
-#    Updated: 2024/09/17 11:33:09 by ngastana         ###   ########.fr        #
+#    Updated: 2024/09/17 16:18:50 by emunoz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
-SRC =		main.c 					\
-			get_next_line/gnl.c		\
-			parse/parse_assets.c	\
-			parse/parse_map.c		\
-			parse/parse_args.c		\
-			utils/libft_0.c			\
-			utils/libft_1.c			\
-			utils/ft_clear.c		\
-			utils/ft_split.c		\
-			utils/libft_2.c			\
-			utils/ft_itoa.c			\
-			ray/raycasting_angel.c	\
-			ray/get_walls.c			\
-			game/play.c				\
-			game/start_game.c		\
-			game/fps.c				\
-			game/get_images.c		\
+SRC =		main.c 							\
+			get_next_line/gnl.c				\
+			parse/parse_assets.c			\
+			parse/parse_assets_utils.c		\
+			parse/parse_map.c				\
+			parse/parse_map_utils.c			\
+			parse/parse_args.c				\
+			utils/libft_0.c					\
+			utils/libft_1.c					\
+			utils/ft_clear.c				\
+			utils/ft_split.c				\
+			utils/libft_2.c					\
+			utils/ft_itoa.c					\
+			ray/raycasting_angel.c			\
+			ray/get_walls.c					\
+			ray/render_draw.c				\
+			game/play.c						\
+			game/start_game.c				\
+			game/fps.c						\
+			game/get_images.c				\
 
 OBJ = $(SRC:.c=.o)
 
@@ -68,8 +71,8 @@ clean:
 fclean: clean
 	rm -rfv $(NAME)
 
-#val: re
-#	valgrind ./cub3d pruebas.cub
+val: re
+	valgrind ./cub3d pruebas.cub
 re: fclean all
 
 .PHONY: all clean fclean re

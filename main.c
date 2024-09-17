@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
+/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:54:00 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/12 09:57:20 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:04:27 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char *argv[])
 		cube.map = malloc(500);
 		cube.mlx = malloc(sizeof(t_mlx));
 		ft_get_args(&cube, fd);
-		close(fd);	
+		close(fd);
 		if (ft_parse_assets(&cube))
 		{
 			if (!ft_take_map(&cube))

@@ -3,19 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
+/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:55:35 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/17 13:55:32 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:29:39 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-void ft_get_args(t_game *cube, int fd)
+void	ft_get_map(t_game *cube, char *ret, int fd)
 {
 	int	i;
-	char *ret;
+
+	cube->north = NULL;
+	cube->south = NULL;
+	cube->west = NULL;
+	cube->east = NULL;
+	cube->flag = 0;
+	i = 1;
+	cube->map[0] = ft_take_all(ret);
+	while (cube->map[0] != NULL)
+	{
+		cube->map[i] = ft_take_all(get_next_line(fd));
+		if (cube->map[i] == NULL)
+			break ;
+		i++;
+	}
+}
+
+void	ft_get_args(t_game *cube, int fd)
+{
+	int		i;
+	char	*ret;
 
 	i = 0;
 	while (1)
@@ -35,13 +55,5 @@ void ft_get_args(t_game *cube, int fd)
 		}
 		i++;
 	}
-	i = 1;
-	cube->map[0] = ft_take_all(ret);
-	while (cube->map[0] != NULL)
-	{
-		cube->map[i] = ft_take_all(get_next_line(fd));
-		if (cube->map[i] == NULL)
-			break ;
-		i++;
-	}
+	ft_get_map(cube, ret, fd);
 }

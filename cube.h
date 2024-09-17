@@ -42,7 +42,6 @@ typedef struct s_game
 	double	plyr_x;
 	double	plyr_y;
 	double	angle;
-//	double	ray_angle;
 	double	ray_length;
 	char	**file;
 	char	**map;
@@ -55,6 +54,7 @@ typedef struct s_game
 	int 	floor;
 	int 	ceiling;
 	int		flag;
+	int		side;
 	double	x_wall_v;
 	double	y_wall_v;
 	double	x_wall_h;
@@ -106,6 +106,7 @@ int 	ft_clear_colors(char *color);
 
 		/* Parse Assets */
 void	ft_get_args(t_game *cube, int fd);
+int		ft_clean_file(t_game *cube);
 
 		/* Parse Map */
 int		ft_valid_close(const char *str);
@@ -113,6 +114,7 @@ char 	*ft_take_all(char *line);
 int		ft_check_map_content(t_game *cube);
 int		ft_take_map(t_game *cube);
 void	ft_print_map(char **map);
+int		ft_map_max_len(t_game *cube);
 
 		/* Start game */
 void	init_the_player(t_game *cube);
@@ -121,7 +123,8 @@ void    ft_get_images(t_game *cube);
 
 		/* Raycasting */
 void	raycasting_angel(t_game *cube);
-void	ft_draw(int x, int start, int end, int color, t_game *cube);
+void	ft_draw(int x, int start, int end, t_game *cube);
+void	ft_wall(void *img_ptr, int ray, int start, int end, t_game *cube, double x_wall);
 double 	get_v(t_game *cube, double ray_angle);
 double	get_h(t_game *cube, double ray_angle);
 double 	normalize_angle(double angle);

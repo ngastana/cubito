@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_images.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
+/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:35:50 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/17 09:39:59 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/17 17:41:34 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	ft_mlx_xpm_file_to_img(void	**ptr, char *dir, t_mlx *mlx)
 
 	res = 0;
 	*ptr = mlx_xpm_file_to_image(mlx->mlx_ptr, dir, &res, &res);
-    if (!*ptr)
-        exit(1);
-}
+	if (!*ptr)
+		exit(1);
+}// free bien
 
-void    ft_get_images(t_game *cube)
-{    
-    ft_mlx_xpm_file_to_img(&cube->mlx->north, cube->north, cube->mlx);
-    ft_mlx_xpm_file_to_img(&cube->mlx->south, cube->south, cube->mlx);
-    ft_mlx_xpm_file_to_img(&cube->mlx->west, cube->west, cube->mlx);
-    ft_mlx_xpm_file_to_img(&cube->mlx->east, cube->east, cube->mlx);
+void	ft_get_images(t_game *cube)
+{
+	ft_mlx_xpm_file_to_img(&cube->mlx->north, cube->north, cube->mlx);
+	ft_mlx_xpm_file_to_img(&cube->mlx->south, cube->south, cube->mlx);
+	ft_mlx_xpm_file_to_img(&cube->mlx->west, cube->west, cube->mlx);
+	ft_mlx_xpm_file_to_img(&cube->mlx->east, cube->east, cube->mlx);
 }
