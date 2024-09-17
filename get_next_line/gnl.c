@@ -3,33 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   gnl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
+/*   By: eneko <eneko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:49:35 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/17 17:40:05 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/17 19:45:11 by eneko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-char	*get_next_line(int fd)
+char	*ft_finalize_line(char *line, char *buf)
 {
-	static char	buf[BUFFER_SIZE + 1];
-	char		*line;
-	char		*newline;
-	int			countread;
-	int			to_copy;
+	char	*newline;
+	int		to_copy;
 
-	line = ft_strdup(buf);
-	while (!(newline = ft_strchr(line, '\n')) 
-			&& (countread = read(fd, buf, BUFFER_SIZE)))
-	{
-		buf[countread] = '\0';
-		line = ft_strjoin(line, buf);
-	}
-	if (ft_strlen(line) == 0)
-		return (free(line), NULL);
-
+	newline = ft_strchr(line, '\n');
 	if (newline != NULL)
 	{
 		to_copy = newline - line + 1;
@@ -42,4 +30,29 @@ char	*get_next_line(int fd)
 	}
 	line[to_copy] = '\0';
 	return (line);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	buf[BUFFER_SIZE + 1];
+	char		*line;
+	int			countread;
+	char		*newline;
+
+	line = ft_strdup(buf);
+	newline = ft_strchr(line, '\n');
+	countread = 1;
+	while (!newline && countread > 0)
+	{
+		countread = read(fd, buf, BUFFER_SIZE);
+		if (countread <= 0)
+			break;
+
+		buf[countread] = '\0';
+		line = ft_strjoin(line, buf);
+		newline = ft_strchr(line, '\n'); 
+	}
+	if (ft_strlen(line) == 0)
+		return (free(line), NULL);
+	return (ft_finalize_line(line, buf)); 
 }
