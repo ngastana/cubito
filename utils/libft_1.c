@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:53:06 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/05 12:42:31 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/17 18:41:26 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,25 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	return (str);
 }
 
-int ft_strstr(const char *s1, const char *s2)
+int	ft_strstr(const char *s1, const char *s2)
 {
-	int i = 0;
-	int j = 0;
-    if (s1 == NULL || s2 == NULL) 
-        return (0);
-    while (s1[i] != '\0') 
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	while (s1[i] != '\0')
 	{
-        j = 0;
-        while (s2[j] != '\0' && s1[i + j] == s2[j]) 
-            j++;
-        if (s2[j] == '\0') 
-            return (1);
+		j = 0;
+		while (s2[j] != '\0' && s1[i + j] == s2[j])
+			j++;
+		if (s2[j] == '\0')
+			return (1);
 		i++;
-    }
-    return (0);
+	}
+	return (0);
 }
 
 int	ft_isalpha(int c)
@@ -77,10 +80,9 @@ int	ft_isalpha(int c)
 	return (1);
 }
 
-int ft_isspace(int c)
+int	ft_isspace(int c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
 	return (0);
 }
-

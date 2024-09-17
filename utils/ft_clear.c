@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clear.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
+/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:19:41 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/12 18:28:20 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/17 18:37:03 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_free_matrix(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!tab)
@@ -24,7 +24,7 @@ void	ft_free_matrix(char **tab)
 	free(tab);
 }
 
-void ft_clear_cub(t_game *cube)
+void	ft_clear_cub(t_game *cube)
 {
 	ft_free_matrix(cube->map);
 	free(cube->mlx);
@@ -33,13 +33,6 @@ void ft_clear_cub(t_game *cube)
 	free(cube->west);
 	free(cube->east);
 	free(cube->file);
-}
-
-void ft_print_map(char **map)
-{
-	int i =0;
-	while (map[i])			
-		printf ("%s\n", map[i++]);
 }
 
 void	ft_destroy_imgs(t_mlx *mlx)
@@ -55,10 +48,18 @@ int	close_window(t_game *cube)
 	ft_destroy_imgs(cube->mlx);
 	mlx_loop_end(cube->mlx->win_ptr);
 	mlx_destroy_image(cube->mlx->mlx_ptr, cube->mlx->buffer);
-    mlx_destroy_window(cube->mlx->mlx_ptr, cube->mlx->win_ptr);
+	mlx_destroy_window(cube->mlx->mlx_ptr, cube->mlx->win_ptr);
 	mlx_destroy_display(cube->mlx->mlx_ptr),
 	mlx_loop_end(cube->mlx->mlx_ptr);
 	free(cube->mlx->mlx_ptr);
-    ft_clear_cub(cube);
-    exit(0);
+	ft_clear_cub(cube);
+	exit(0);
+}
+
+void	ft_destroy(t_game *cube)
+{
+	mlx_destroy_display(cube->mlx->mlx_ptr),
+	free(cube->mlx->mlx_ptr);
+	ft_clear_cub(cube);
+	exit(1);
 }

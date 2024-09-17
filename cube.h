@@ -94,6 +94,7 @@ void	ft_free_matrix(char **tab);
 void	ft_clear_cub(t_game *cube);
 void	ft_print_map(char **map);
 int		close_window(t_game *cube);
+void	ft_destroy(t_game *cube);
 
 		/* Get_next_line */
 char	*get_next_line(int fd);
@@ -113,7 +114,6 @@ int		ft_valid_close(const char *str);
 char 	*ft_take_all(char *line);
 int		ft_check_map_content(t_game *cube);
 int		ft_take_map(t_game *cube);
-void	ft_print_map(char **map);
 int		ft_map_max_len(t_game *cube);
 
 		/* Start game */

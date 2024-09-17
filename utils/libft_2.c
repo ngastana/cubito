@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:46:06 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/10 15:46:39 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/17 18:34:10 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_atoi(const char *str)
 	numb = 0;
 	sign = 1;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-	i++;
+		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
