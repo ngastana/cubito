@@ -6,7 +6,7 @@
 /*   By: eneko <eneko@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:49:35 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/17 19:45:11 by eneko            ###   ########.fr       */
+/*   Updated: 2024/09/17 20:16:58 by eneko            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,12 @@ char	*get_next_line(int fd)
 	{
 		countread = read(fd, buf, BUFFER_SIZE);
 		if (countread <= 0)
-			break;
-
+			break ;
 		buf[countread] = '\0';
 		line = ft_strjoin(line, buf);
-		newline = ft_strchr(line, '\n'); 
+		newline = ft_strchr(line, '\n');
 	}
 	if (ft_strlen(line) == 0)
 		return (free(line), NULL);
-	return (ft_finalize_line(line, buf)); 
+	return (ft_finalize_line(line, buf));
 }
