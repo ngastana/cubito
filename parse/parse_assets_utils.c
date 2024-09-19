@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 15:43:49 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/19 21:09:49 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 21:53:05 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_clear_colors(char *color)
 	while (color[i] && ft_isspace(color[i]))
 		i++;
 	if ((color[i] != 'F' && color[i] != 'C') || color[i + 1] != ' ')
-		return (free(color), printf("Invalid File\n"), 0);
+		return (free(color), 0);
 	while (!ft_isspace(color[i + 1]))
 		i++;
 	split = ft_split(color + i + 1, ',');
@@ -63,10 +63,10 @@ int	ft_clear_colors(char *color)
 	{
 		rgb[i] = ft_atoi(split[i]);
 		if (rgb[i] < 0 || rgb[i] > 255)
-			return (ft_free_matrix(split), printf("Invalid File\n"), 0);
+			return (ft_free_matrix(split), 0);
 	}
 	if (i != 3)
-		return (ft_free_matrix(split), printf("Invalid File\n"), 0);
+		return (ft_free_matrix(split), 0);
 	return (ft_free_matrix(split), ft_trans_rgb(rgb));
 }
 

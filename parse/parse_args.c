@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:55:35 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/19 20:38:39 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 22:18:22 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_get_after_map(int fd)
 	while (tmp != NULL)
 	{
 		if (!ft_isspace(tmp[0]))
-			return (printf("Error7\n"), free(tmp), 1);
+			return (printf("Invalid File: check parameters\n"), free(tmp), 1);
 		free(tmp);
 		tmp = get_next_line(fd);
 		if (tmp == NULL)

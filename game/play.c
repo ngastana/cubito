@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
+/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:58:45 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/19 18:59:40 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/19 21:43:07 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	move_up_down(t_game *cube, int keycode)
 	}
 	else
 		return (0);
-	if (cube->map[(int)new_y][(int)cube->plyr_x] == '0')
+	if (cube->map[(int)(new_y)][(int)cube->plyr_x] == '0')
 		cube->plyr_y = new_y;
-	if (cube->map[(int)cube->plyr_y][(int)new_x] == '0')
+	if (cube->map[(int)cube->plyr_y][(int)(new_x)] == '0')
 		cube->plyr_x = new_x;
 	return (1);
 }
