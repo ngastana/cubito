@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:54:00 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/17 19:04:05 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 10:59:34 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 void	ft_process_input(t_game *cube, int fd)
 {
 	ft_get_args(cube, fd);
+	if (ft_get_after_map(fd))
+	{
+		close(fd);
+		ft_free_matrix(cube->file);
+		ft_free_matrix(cube->map);
+		free(cube->mlx);
+		exit(0);
+	}
 	close(fd);
 	if (ft_parse_assets(cube))
 	{

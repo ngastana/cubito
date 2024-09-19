@@ -6,15 +6,32 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:55:35 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/17 15:29:39 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 11:00:39 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
+int	ft_get_after_map(int fd)
+{
+	char	*tmp;
+
+	tmp = get_next_line(fd);
+	while (tmp != NULL)
+	{
+		if (!ft_isspace(tmp[0]))
+			return (printf("Error7\n"), free(tmp), 1);
+		free(tmp);
+		tmp = get_next_line(fd);
+		if (tmp == NULL)
+			return (free(tmp), 0);
+	}
+	return (0);
+}
+
 void	ft_get_map(t_game *cube, char *ret, int fd)
 {
-	int	i;
+	int		i;
 
 	cube->north = NULL;
 	cube->south = NULL;

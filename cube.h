@@ -92,7 +92,6 @@ char	*ft_itoa(int n);
 		/* FT_CLEAR */
 void	ft_free_matrix(char **tab);
 void	ft_clear_cub(t_game *cube);
-void	ft_print_map(char **map);
 int		close_window(t_game *cube);
 void	ft_destroy(t_game *cube);
 
@@ -107,6 +106,7 @@ int 	ft_clear_colors(char *color);
 
 		/* Parse Assets */
 void	ft_get_args(t_game *cube, int fd);
+int		ft_get_after_map(int fd);
 int		ft_clean_file(t_game *cube);
 
 		/* Parse Map */
