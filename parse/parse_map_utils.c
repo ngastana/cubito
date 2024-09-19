@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 15:46:38 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/17 15:49:05 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 16:40:13 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ int	ft_spaces(char **map)
 			{
 				if (map[i][j + 1] == '\0' || map[i][j - 1] == '\0')
 					return (0);
-				if (map[i + 1] == NULL || map[i - 1] == NULL)
+				else if (!map[i + 1][j] || !map[i - 1][j])
 					return (0);
-				if (map[i][j + 1] == ' ' || map[i][j - 1] == ' ')
+				else if (map[i][j + 1] == ' ' || map[i][j - 1] == ' ')
 					return (0);
-				if (map[i + 1][j] == ' ' || map[i - 1][j] == ' ')
+				else if (map[i + 1][j] == ' ' || map[i - 1][j] == ' ')
 					return (0);
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:50:27 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/19 15:56:08 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 16:50:44 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define BUFFER_SIZE 42
 # define PI 3.14159265358979323846
 # define FOV 60 // field of view
-# define IMG_WIDTH 80
-# define IMG_HEIGHT 80
+# define IMG_WIDTH 64
+# define IMG_HEIGHT 64
 
 typedef struct s_mlx
 {
