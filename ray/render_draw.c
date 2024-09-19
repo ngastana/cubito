@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:06:39 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/19 15:56:35 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 20:42:50 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,17 @@ void	ft_wall_h(int ray, int start, int end, t_game *cube)
 		&cube->mlx->size_line_t, &cube->mlx->endian_t);
 	tex_pos = 0;
 	step = (double)IMG_HEIGHT / (end - start);
+	cube->x_wall_h = fmod(cube->x_wall_h, 1.0);
 	while (start < end)
 	{
-		pixel = img_data + ((int)tex_pos % IMG_HEIGHT * cube->mlx->size_line_t \
+		float j = (int)tex_pos % IMG_HEIGHT;
+		if (cube->ray_length < 1)
+			j = (int)(tex_pos * cube->ray_length) % IMG_HEIGHT;
+		pixel = img_data + ((int) j * cube->mlx->size_line_t \
 		+ ((int)(cube->x_wall_h * IMG_WIDTH)) * (cube->mlx->bpp_t / 8));
-		tex_pos += step;
 		color = *(unsigned int *)pixel;
-		*(unsigned int *)(cube->mlx->data_addr + (int)(start * \
-		cube->mlx->size_line + ray * (cube->mlx->bpp / 8))) = color;
+		tex_pos += step;
+		ft_pixel_put(ray, start, color, cube);
 		start++;
 	}
 }
@@ -79,14 +82,17 @@ void	ft_wall_v(int ray, int start, int end, t_game *cube)
 		&cube->mlx->size_line_t, &cube->mlx->endian_t);
 	tex_pos = 0;
 	step = (double)IMG_HEIGHT / (end - start);
+	cube->x_wall_v = fmod(cube->x_wall_v, 1.0);
 	while (start < end)
 	{
-		pixel = img_data + ((int)tex_pos % IMG_HEIGHT * cube->mlx->size_line_t \
+		float j = (int)tex_pos % IMG_HEIGHT;
+		if (cube->ray_length < 1)
+			j = (int)(tex_pos * cube->ray_length) % IMG_HEIGHT;
+		pixel = img_data + ((int)j  * cube->mlx->size_line_t \
 		+ ((int)(cube->y_wall_v * IMG_WIDTH)) * (cube->mlx->bpp_t / 8));
-		tex_pos += step;
 		color = *(unsigned int *)pixel;
-		*(unsigned int *)(cube->mlx->data_addr + (int)(start * \
-		cube->mlx->size_line + ray * (cube->mlx->bpp / 8))) = color;
+		tex_pos += step;
+		ft_pixel_put(ray, start, color, cube);
 		start++;
 	}
 }

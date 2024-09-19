@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
+/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:58:45 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/19 15:34:56 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 18:59:40 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,57 +15,57 @@
 int	move_up_down(t_game *cube, int keycode)
 {
 	double	move_speed;
+	double	new_x;
+	double	new_y;
 
 	move_speed = 0.1;
+	new_x = 0;
+	new_y = 0;
 	if (keycode == 119)
 	{
-		if (cube->map[(int)(cube->plyr_y + sin(cube->angle) * move_speed)] \
-		[(int)(cube->plyr_x + cos(cube->angle) * move_speed)] == '0')
-		{
-			cube->plyr_x += cos(cube->angle) * move_speed;
-			cube->plyr_y += sin(cube->angle) * move_speed;
-		}
-		return (1);
+		new_x = cube->plyr_x + cos(cube->angle) * move_speed;
+		new_y = cube->plyr_y + sin(cube->angle) * move_speed;
 	}
 	else if (keycode == 115)
 	{
-		if (cube->map[(int)(cube->plyr_y - sin(cube->angle) * move_speed)] \
-		[(int)(cube->plyr_x - cos(cube->angle) * move_speed)] == '0')
-		{
-			cube->plyr_x -= cos(cube->angle) * move_speed;
-			cube->plyr_y -= sin(cube->angle) * move_speed;
-		}
-		return (1);
+		new_x = cube->plyr_x - cos(cube->angle) * move_speed;
+		new_y = cube->plyr_y - sin(cube->angle) * move_speed;
 	}
-	return (0);
+	else
+		return (0);
+	if (cube->map[(int)new_y][(int)cube->plyr_x] == '0')
+		cube->plyr_y = new_y;
+	if (cube->map[(int)cube->plyr_y][(int)new_x] == '0')
+		cube->plyr_x = new_x;
+	return (1);
 }
 
 int	move_right_left(t_game *cube, int keycode)
 {
 	double	move_speed;
+	double	new_x;
+	double	new_y;
 
 	move_speed = 0.1;
+	new_x = 0;
+	new_y = 0;
 	if (keycode == 100)
 	{
-		if (cube->map[(int)(cube->plyr_y + cos(cube->angle) * move_speed)] \
-		[(int)(cube->plyr_x - sin(cube->angle) * move_speed)] == '0')
-		{
-			cube->plyr_x -= sin(cube->angle) * move_speed;
-			cube->plyr_y += cos(cube->angle) * move_speed;
-		}
-		return (1);
+		new_x = cube->plyr_x - sin(cube->angle) * move_speed;
+		new_y = cube->plyr_y + cos(cube->angle) * move_speed;
 	}
 	else if (keycode == 97)
 	{
-		if (cube->map[(int)(cube->plyr_y - cos(cube->angle) * move_speed)] \
-		[(int)(cube->plyr_x + sin(cube->angle) * move_speed)] == '0')
-		{
-			cube->plyr_x += sin(cube->angle) * move_speed;
-			cube->plyr_y -= cos(cube->angle) * move_speed;
-		}
-		return (1);
+		new_x = cube->plyr_x + sin(cube->angle) * move_speed;
+		new_y = cube->plyr_y - cos(cube->angle) * move_speed;
 	}
-	return (0);
+	else
+		return (0);
+	if (cube->map[(int)new_y][(int)cube->plyr_x] == '0')
+		cube->plyr_y = new_y;
+	if (cube->map[(int)cube->plyr_y][(int)new_x] == '0')
+		cube->plyr_x = new_x;
+	return (1);
 }
 
 int	khook(int keycode, t_game *cube)

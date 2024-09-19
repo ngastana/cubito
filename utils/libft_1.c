@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:53:06 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/17 18:41:26 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 21:13:50 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	ft_strstr(const char *s1, const char *s2)
 		j = 0;
 		while (s2[j] != '\0' && s1[i + j] == s2[j])
 			j++;
+		if (j != (int)ft_strlen(s2))
+			return (0);
 		if (s2[j] == '\0')
 			return (1);
 		i++;

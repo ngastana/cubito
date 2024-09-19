@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:54:52 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/19 15:56:25 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 19:28:55 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	obt_info(t_game *cube, double ray_angel, int *draw_start, int *draw_end)
 	int	line_height;
 
 	cube->ray_length *= sin(PI / 2 + ray_angel - cube->angle);
-	if (cube->ray_length < 0.5)
-		cube->ray_length += 0.1;
+	cube->ray_length += 0.1;
 	line_height = (int)(cube->mlx->height / cube->ray_length);
 	*draw_start = -line_height / 2 + cube->mlx->height / 2;
 	if (*draw_start < 0)

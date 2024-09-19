@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:55:35 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/19 11:00:39 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 20:38:39 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	ft_get_map(t_game *cube, char *ret, int fd)
 	cube->west = NULL;
 	cube->east = NULL;
 	cube->flag = 0;
+	cube->ceiling = 0;
+	cube->floor = 0;
 	i = 1;
 	cube->map[0] = ft_take_all(ret);
 	while (cube->map[0] != NULL)

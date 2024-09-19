@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 15:43:49 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/17 15:44:35 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 21:09:49 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int	ft_clear_colors(char *color)
 		return (0);
 	while (color[i] && ft_isspace(color[i]))
 		i++;
-	if (color[i] != 'F' && color[i] != 'C')
+	if ((color[i] != 'F' && color[i] != 'C') || color[i + 1] != ' ')
 		return (free(color), printf("Invalid File\n"), 0);
-	while (color[i + 1] && !ft_isdigit(color[i + 1]))
+	while (!ft_isspace(color[i + 1]))
 		i++;
 	split = ft_split(color + i + 1, ',');
 	free(color);
@@ -91,17 +91,17 @@ int	ft_clean_file(t_game *cube)
 	i = 0;
 	while (cube->file[i])
 	{
-		if (ft_strstr(cube->file[i], "NO") && !cube->north)
+		if (ft_strstr(cube->file[i], "NO ") && !cube->north)
 			cube->north = ft_check_xpm(ft_clear_textures(cube->file[i]));
-		else if (ft_strstr(cube->file[i], "SO") && !cube->south)
+		else if (ft_strstr(cube->file[i], "SO ") && !cube->south)
 			cube->south = ft_check_xpm(ft_clear_textures(cube->file[i]));
-		else if (ft_strstr(cube->file[i], "WE") && !cube->west)
+		else if (ft_strstr(cube->file[i], "WE ") && !cube->west)
 			cube->west = ft_check_xpm(ft_clear_textures(cube->file[i]));
-		else if (ft_strstr(cube->file[i], "EA") && !cube->east)
+		else if (ft_strstr(cube->file[i], "EA ") && !cube->east)
 			cube->east = ft_check_xpm(ft_clear_textures(cube->file[i]));
-		else if (ft_strstr(cube->file[i], "F"))
+		else if (ft_strstr(cube->file[i], "F "))
 			cube->floor = ft_clear_colors(cube->file[i]);
-		else if (ft_strstr(cube->file[i], "C"))
+		else if (ft_strstr(cube->file[i], "C "))
 			cube->ceiling = ft_clear_colors(cube->file[i]);
 		else
 			free(cube->file[i]);
