@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 10:35:50 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/17 18:48:39 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 12:13:20 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_mlx_xpm_file_to_img(void	**ptr, char *dir, t_game *cube)
 		{
 			mlx_destroy_image(cube->mlx->mlx_ptr, cube->mlx->north);
 			mlx_destroy_image(cube->mlx->mlx_ptr, cube->mlx->south);
-			mlx_destroy_image(cube->mlx->mlx_ptr, cube->mlx->south);
+			mlx_destroy_image(cube->mlx->mlx_ptr, cube->mlx->west);
 		}
 		ft_destroy(cube);
 	}

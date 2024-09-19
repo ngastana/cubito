@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cube.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/19 11:50:27 by ngastana          #+#    #+#             */
+/*   Updated: 2024/09/19 15:56:08 by emunoz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUBE_H
 # define CUBE_H
-
 
 # include <fcntl.h>
 # include <unistd.h>
@@ -13,10 +24,11 @@
 # include <stdbool.h>
 # include <sys/time.h>  
 
-
 # define BUFFER_SIZE 42
 # define PI 3.14159265358979323846
 # define FOV 60 // field of view
+# define IMG_WIDTH 80
+# define IMG_HEIGHT 80
 
 typedef struct s_mlx
 {
@@ -26,14 +38,17 @@ typedef struct s_mlx
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	**img_ptr;
-	void    *buffer; 
+	void	*buffer;
 	void	*data_addr;
 	int		bpp;
 	int		size_line;
 	int		endian;
-	void    *north; 
+	int		bpp_t;
+	int		size_line_t;
+	int		endian_t;
+	void	*north;
 	void	*south;
-	void    *west; 
+	void	*west;
 	void	*east;
 }				t_mlx;
 
@@ -47,25 +62,25 @@ typedef struct s_game
 	char	**map;
 	int		map_height;
 	int		map_width;
-	char 	*north;
-	char 	*south;
-	char 	*west;
-	char 	*east;
-	int 	floor;
-	int 	ceiling;
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	int		floor;
+	int		ceiling;
 	int		flag;
 	int		side;
 	double	x_wall_v;
 	double	y_wall_v;
 	double	x_wall_h;
 	double	y_wall_h;
+	bool	ray_facing_up;
+	bool	ray_facing_right;
 	t_mlx	*mlx;
 }	t_game;
 
-
-
 		/* Libft */
-	   	/* LIBFT 00 */
+		/* LIBFT 00 */
 char	*ft_strchr(char *s, int c);
 size_t	ft_strlen(const char *s);
 void	ft_strcpy(char *dest, const char *src);
@@ -98,11 +113,10 @@ void	ft_destroy(t_game *cube);
 		/* Get_next_line */
 char	*get_next_line(int fd);
 
-
 		/* Parse Assets */
 int		ft_parse_assets(t_game *cube);
 char	*ft_clear_textures(char *str);
-int 	ft_clear_colors(char *color);
+int		ft_clear_colors(char *color);
 
 		/* Parse Assets */
 void	ft_get_args(t_game *cube, int fd);
@@ -111,7 +125,7 @@ int		ft_clean_file(t_game *cube);
 
 		/* Parse Map */
 int		ft_valid_close(const char *str);
-char 	*ft_take_all(char *line);
+char	*ft_take_all(char *line);
 int		ft_check_map_content(t_game *cube);
 int		ft_take_map(t_game *cube);
 int		ft_map_max_len(t_game *cube);
@@ -119,15 +133,16 @@ int		ft_map_max_len(t_game *cube);
 		/* Start game */
 void	init_the_player(t_game *cube);
 void	ft_start_game(t_game *cube);
-void    ft_get_images(t_game *cube);
+void	ft_get_images(t_game *cube);
 
 		/* Raycasting */
 void	raycasting_angel(t_game *cube);
 void	ft_draw(int x, int start, int end, t_game *cube);
-void	ft_wall(void *img_ptr, int ray, int start, int end, t_game *cube, double x_wall);
-double 	get_v(t_game *cube, double ray_angle);
+void	ft_wall_h(int ray, int start, int end, t_game *cube);
+void	ft_wall_v(int ray, int start, int end, t_game *cube);
+double	get_v(t_game *cube, double ray_angle);
 double	get_h(t_game *cube, double ray_angle);
-double 	normalize_angle(double angle);
+double	normalize_angle(double angle);
 
 		/* Play */
 int		khook(int keycode, t_game *cube);

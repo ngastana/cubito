@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 09:21:34 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/17 16:05:23 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 15:55:44 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,11 @@ double	get_v(t_game *cube, double ray_angle)
 {
 	float	x_step;
 	float	y_step;
-	bool	ray_facing_right;
 	int		sum_h;
 
 	ray_angle = normalize_angle(ray_angle);
-	ray_facing_right = ray_angle < PI / 2 || ray_angle > 3 * PI / 2;
-	sum_h = utils_get_v(cube, ray_facing_right, &x_step);
+	cube->ray_facing_right = ray_angle < PI / 2 || ray_angle > 3 * PI / 2;
+	sum_h = utils_get_v(cube, cube->ray_facing_right, &x_step);
 	cube->y_wall_v = cube->plyr_y + \
 	(cube->x_wall_v - cube->plyr_x) * tan(ray_angle);
 	y_step = x_step * tan(ray_angle);
@@ -88,12 +87,11 @@ double	get_h(t_game *cube, double ray_angle)
 {
 	float	x_step;
 	float	y_step;
-	bool	ray_facing_up;
 	int		sum_h;
 
 	ray_angle = normalize_angle(ray_angle);
-	ray_facing_up = ray_angle > 0 && ray_angle < PI;
-	sum_h = utils_get_h(cube, ray_facing_up, &y_step);
+	cube->ray_facing_up = ray_angle > 0 && ray_angle < PI;
+	sum_h = utils_get_h(cube, cube->ray_facing_up, &y_step);
 	cube->x_wall_h = cube->plyr_x + \
 	(cube->y_wall_h - cube->plyr_y) / tan(ray_angle);
 	if (cube->x_wall_h >= cube->map_width || cube->x_wall_h < 0 \

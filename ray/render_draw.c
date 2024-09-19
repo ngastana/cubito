@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:06:39 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/17 16:44:15 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 15:56:35 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,59 @@ void	ft_draw(int x, int start, int end, t_game *cube)
 		end++;
 	}
 }
-// Pa mas adelante
-void	ft_wall(void *img_ptr, int ray, int start, int end, t_game *cube, double x_wall)
-{
-	char            *pixel;
-	char            *pixel2;
-	unsigned int    color;
-	int             bpp, size_line, endian;
-	char            *img_data;
-	int             y;
-	double			step;
-	double          tex_pos;
 
-	img_data = mlx_get_data_addr(img_ptr, &bpp, &size_line, &endian);
-	int img_width = 80;
-	int img_height = 72;
-	int tex_x = (int)(x_wall * img_width);
+void	ft_wall_h(int ray, int start, int end, t_game *cube)
+{
+	char			*pixel;
+	unsigned int	color;
+	char			*img_data;
+	double			step;
+	double			tex_pos;
+
+	if (cube->ray_facing_up)
+		img_data = mlx_get_data_addr(cube->mlx->north, &cube->mlx->bpp_t, \
+		&cube->mlx->size_line_t, &cube->mlx->endian_t);
+	else
+		img_data = mlx_get_data_addr(cube->mlx->south, &cube->mlx->bpp_t, \
+		&cube->mlx->size_line_t, &cube->mlx->endian_t);
 	tex_pos = 0;
-	step = (double)img_height / (end - start);
-	for (y = start; y < end; y++)
+	step = (double)IMG_HEIGHT / (end - start);
+	while (start < end)
 	{
-		pixel = img_data + ((int)tex_pos % img_height * size_line + (tex_x) * (bpp / 8));
+		pixel = img_data + ((int)tex_pos % IMG_HEIGHT * cube->mlx->size_line_t \
+		+ ((int)(cube->x_wall_h * IMG_WIDTH)) * (cube->mlx->bpp_t / 8));
 		tex_pos += step;
 		color = *(unsigned int *)pixel;
-		pixel2 = cube->mlx->data_addr + (int)(y * (cube->mlx->size_line) + ray * (cube->mlx->bpp / 8));
-		*(unsigned int*)pixel2 = color;
+		*(unsigned int *)(cube->mlx->data_addr + (int)(start * \
+		cube->mlx->size_line + ray * (cube->mlx->bpp / 8))) = color;
+		start++;
+	}
+}
+
+void	ft_wall_v(int ray, int start, int end, t_game *cube)
+{
+	char			*pixel;
+	unsigned int	color;
+	char			*img_data;
+	double			step;
+	double			tex_pos;
+
+	if (cube->ray_facing_right)
+		img_data = mlx_get_data_addr(cube->mlx->west, &cube->mlx->bpp_t, \
+		&cube->mlx->size_line_t, &cube->mlx->endian_t);
+	else
+		img_data = mlx_get_data_addr(cube->mlx->east, &cube->mlx->bpp_t, \
+		&cube->mlx->size_line_t, &cube->mlx->endian_t);
+	tex_pos = 0;
+	step = (double)IMG_HEIGHT / (end - start);
+	while (start < end)
+	{
+		pixel = img_data + ((int)tex_pos % IMG_HEIGHT * cube->mlx->size_line_t \
+		+ ((int)(cube->y_wall_v * IMG_WIDTH)) * (cube->mlx->bpp_t / 8));
+		tex_pos += step;
+		color = *(unsigned int *)pixel;
+		*(unsigned int *)(cube->mlx->data_addr + (int)(start * \
+		cube->mlx->size_line + ray * (cube->mlx->bpp / 8))) = color;
+		start++;
 	}
 }

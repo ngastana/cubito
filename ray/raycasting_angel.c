@@ -6,7 +6,7 @@
 /*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 15:54:52 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/17 17:36:45 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/19 15:56:25 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,9 @@ void	ft_screen(int ray, int draw_start, int draw_end, t_game *cube)
 {
 	ft_draw(ray, draw_start, draw_end, cube);
 	if (cube->side == 0)
-		ft_wall(cube->mlx->north, ray, \
-			draw_start, draw_end, cube, cube->x_wall_h);
+		ft_wall_h(ray, draw_start, draw_end, cube);
 	else
-		ft_wall(cube->mlx->west, ray, \
-			draw_start, draw_end, cube, cube->y_wall_v);
+		ft_wall_v(ray, draw_start, draw_end, cube);
 }
 
 void	raycasting_angel(t_game *cube)
