@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
+/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 15:46:38 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/19 16:40:13 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/20 12:27:14 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_valid_close(const char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	if (str[i] == '\n')
 		return (0);
 	while (str[i])
@@ -44,13 +46,13 @@ char	*ft_take_all(char *line)
 	while (ft_isspace(line[i]))
 		i++;
 	if (line[i] != '1')
-		return (free(line), printf("Error1\n"), NULL);
+		return (free(line), "M");
 	end = ft_strlen(line) -1;
 	while (ft_isspace(line[end]))
 		end--;
 	if (line[end] != '1')
-		return (free(line), printf("Erro2\n"), NULL);
-	ret = ft_substr(line, 0, end +1);
+		return (free(line), "M");
+	ret = ft_substr(line, 0, end + 1);
 	return (free(line), ret);
 }
 
@@ -60,7 +62,6 @@ int	ft_check_map_content(t_game *cube)
 	int	j;
 
 	i = -1;
-	j = -1;
 	while (cube->map[++i])
 	{
 		j = -1;
@@ -75,10 +76,11 @@ int	ft_check_map_content(t_game *cube)
 				cube->mlx->direction = cube->map[i][j];
 				cube->map[i][j] = '0';
 			}
+			else if ((cube->map[i][j] != '1' && cube->map[i][j] != '0' \
+			&& cube->map[i][j] != ' ') || cube->flag > 1)
+				return (0);
 		}
 	}
-	if (cube->flag != 1)
-		return (printf("Error3\n"), 0);
 	return (1);
 }
 
@@ -96,13 +98,14 @@ int	ft_spaces(char **map)
 			if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
 				|| map[i][j] == 'W' || map[i][j] == 'E')
 			{
-				if (map[i][j + 1] == '\0' || map[i][j - 1] == '\0')
+				if (map[i][j + 1] == '\0' || map[i][j - 1] == '\0' || \
+				map[i][j + 1] == ' ' || map[i][j - 1] == ' ')
 					return (0);
-				else if (!map[i + 1][j] || !map[i - 1][j])
+				else if (map[i + 1][j] == '\0' || map[i - 1][j] == '\0' || \
+				map[i][j + 1] == 'x' || map[i][j - 1] == 'x')
 					return (0);
-				else if (map[i][j + 1] == ' ' || map[i][j - 1] == ' ')
-					return (0);
-				else if (map[i + 1][j] == ' ' || map[i - 1][j] == ' ')
+				else if (map[i + 1][j] == ' ' || map[i - 1][j] == ' ' || \
+				map[i + 1][j] == 'x' || map[i - 1][j] == 'x')
 					return (0);
 			}
 		}
@@ -127,7 +130,5 @@ int	ft_map_max_len(t_game *cube)
 	}
 	cube->map_width = max_len;
 	cube->map_height = i;
-	if (ft_spaces(cube->map))
-		return (max_len);
-	return (0);
+	return (max_len);
 }

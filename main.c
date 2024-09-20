@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
+/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:54:00 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/19 10:59:34 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/20 12:17:09 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	ft_process_input(t_game *cube, int fd)
 {
-	ft_get_args(cube, fd);
-	if (ft_get_after_map(fd))
+	int	i;
+
+	i = ft_get_args(cube, fd);
+	if (i == 1 || ft_get_after_map(fd))
 	{
 		close(fd);
 		ft_free_matrix(cube->file);
@@ -26,10 +28,12 @@ void	ft_process_input(t_game *cube, int fd)
 	close(fd);
 	if (ft_parse_assets(cube))
 	{
-		if (!ft_take_map(cube))
-			return (printf("Error4\n"), ft_clear_cub(cube), (void)0);
 		if (!ft_check_map_content(cube))
-			return (printf("Error5\n"), ft_clear_cub(cube), (void)0);
+			return (printf("Invalid File: check parameters\n"), \
+			ft_clear_cub(cube), (void)0);
+		if (!ft_take_map(cube))
+			return (printf("Invalid File: check parameters\n"), \
+			ft_clear_cub(cube), (void)0);
 		init_the_player(cube);
 		ft_start_game(cube);
 	}

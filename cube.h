@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
+/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:50:27 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/19 21:23:30 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/20 12:39:33 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int		ft_isspace(int c);
 		/* LIBFT 02 */
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
+void	*ft_memset(void *str, int c, size_t n);
 
 		/* FT_SPLIT */
 char	**ft_split(char const *s, char c);
@@ -119,7 +120,7 @@ char	*ft_clear_textures(char *str);
 int		ft_clear_colors(char *color);
 
 		/* Parse Assets */
-void	ft_get_args(t_game *cube, int fd);
+int		ft_get_args(t_game *cube, int fd);
 int		ft_get_after_map(int fd);
 int		ft_clean_file(t_game *cube);
 
@@ -129,6 +130,7 @@ char	*ft_take_all(char *line);
 int		ft_check_map_content(t_game *cube);
 int		ft_take_map(t_game *cube);
 int		ft_map_max_len(t_game *cube);
+int		ft_spaces(char **map);
 
 		/* Start game */
 void	init_the_player(t_game *cube);

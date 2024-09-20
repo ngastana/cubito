@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
+/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:46:06 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/17 18:34:10 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/20 09:38:44 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,19 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (numb * sign);
+}
+
+void	*ft_memset(void *str, int c, size_t n)
+{
+	char	*s;
+	size_t	i;
+
+	s = str;
+	i = 0;
+	while (i < n)
+	{
+		s[i] = c;
+		i++;
+	}
+	return (s);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
+/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:55:35 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/19 22:18:22 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/20 12:46:17 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_get_after_map(int fd)
 	return (0);
 }
 
-void	ft_get_map(t_game *cube, char *ret, int fd)
+int	ft_get_map(t_game *cube, char *ret, int fd)
 {
 	int		i;
 
@@ -37,25 +37,35 @@ void	ft_get_map(t_game *cube, char *ret, int fd)
 	cube->south = NULL;
 	cube->west = NULL;
 	cube->east = NULL;
-	cube->flag = 0;
-	cube->ceiling = 0;
-	cube->floor = 0;
 	i = 1;
 	cube->map[0] = ft_take_all(ret);
-	while (cube->map[0] != NULL)
+	while (cube->map[0] != NULL && i < 50)
 	{
 		cube->map[i] = ft_take_all(get_next_line(fd));
 		if (cube->map[i] == NULL)
 			break ;
+		else if (cube->map[i][0] == 'M')
+		{
+			cube->map[i] = NULL;
+			return (printf("Invalid File: check parameters\n"), 1);
+		}
 		i++;
 	}
+	if (i == 50)
+		cube->map[i] = NULL;
+	if (!ft_valid_close(cube->map[i -1]) || i == 50)
+		return (printf("Invalid File: check parameters\n"), 1);
+	return (0);
 }
 
-void	ft_get_args(t_game *cube, int fd)
+int	ft_get_args(t_game *cube, int fd)
 {
 	int		i;
 	char	*ret;
 
+	cube->flag = 0;
+	cube->ceiling = 0;
+	cube->floor = 0;
 	i = 0;
 	while (1)
 	{
@@ -74,5 +84,5 @@ void	ft_get_args(t_game *cube, int fd)
 		}
 		i++;
 	}
-	ft_get_map(cube, ret, fd);
+	return (ft_get_map(cube, ret, fd));
 }

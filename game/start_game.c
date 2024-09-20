@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
+/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:56:55 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/19 15:34:09 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/20 09:40:12 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	init_the_player(t_game *cube)
 	cube->mlx->height = 600;
 	if (cube->mlx->direction == 'W')
 		cube->angle = PI;
-	else if (cube->mlx->direction == 'N')
-		cube->angle = PI / 2;
 	else if (cube->mlx->direction == 'S')
+		cube->angle = PI / 2;
+	else if (cube->mlx->direction == 'N')
 		cube->angle = 3 * PI / 2;
 	else if (cube->mlx->direction == 'E')
 		cube->angle = 0;

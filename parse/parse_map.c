@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
+/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:38:57 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/17 15:51:31 by emunoz           ###   ########.fr       */
+/*   Updated: 2024/09/20 12:04:05 by ngastana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_fill_line(char *line, int start, int max_len)
 	if (!join)
 		return (NULL);
 	while (i < max_len - start)
-		join[i++] = '1';
+		join[i++] = 'x';
 	join[i] = '\0';
 	ret = ft_strjoin(line, join);
 	return (free(join), ret);
@@ -37,17 +37,17 @@ int	ft_take_map(t_game *cube)
 	int	i;
 	int	j;
 
+	i = -1;
 	max_len = ft_map_max_len(cube);
 	if (max_len == 0)
 		return (0);
-	i = -1;
 	while (cube->map[++i])
 	{
 		j = -1;
 		while (cube->map[i][++j])
 		{
 			if (ft_isspace(cube->map[i][j]))
-				cube->map[i][j] = '1';
+				cube->map[i][j] = 'x';
 		}
 	}
 	i = -1;
@@ -57,5 +57,5 @@ int	ft_take_map(t_game *cube)
 		if (j < max_len)
 			cube->map[i] = ft_fill_line(cube->map[i], j, max_len);
 	}
-	return (1);
+	return (ft_spaces(cube->map));
 }
