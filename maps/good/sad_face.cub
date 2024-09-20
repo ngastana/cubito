@@ -1,10 +1,10 @@
-NO textures/simonkraft/soul_sand.xpm
-SO textures/simonkraft/soul_soil_01.xpm
-WE textures/simonkraft/soul_soil.xpm
-EA textures/simonkraft/soul_sand.xpm
+NO ./textures/rokitas.xpm
+SO ./textures/cerca.xpm
+WE ./textures/cerca.xpm
+EA ./textures/rokitas.xpm
 
-C 53,41,34
-F 45,33,27
+F 19, 95, 0
+C 17, 96, 196
 
 111111111111111
 111111000111111

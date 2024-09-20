@@ -1,10 +1,10 @@
-NO ./textures/walls.xpm
-SO ./textures/walls.xpm
-WE ./textures/walls.xpm
-EA ./textures/walls.xpm
+NO ./textures/rokitas.xpm
+SO ./textures/cerca.xpm
+WE ./textures/cerca.xpm
+EA ./textures/rokitas.xpm
 
-F 220,100,0
-C 225,30,0
+F 19, 95, 0
+C 17, 96, 196
 
         1111111111111111111111111
         1000000000110000000000001

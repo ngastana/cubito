@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
+/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 16:54:00 by ngastana          #+#    #+#             */
-/*   Updated: 2024/09/20 12:17:09 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/20 15:32:46 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_process_input(t_game *cube, int fd)
 	close(fd);
 	if (ft_parse_assets(cube))
 	{
-		if (!ft_check_map_content(cube))
+		if (!ft_check_map_content(cube) || cube->flag == 0)
 			return (printf("Invalid File: check parameters\n"), \
 			ft_clear_cub(cube), (void)0);
 		if (!ft_take_map(cube))

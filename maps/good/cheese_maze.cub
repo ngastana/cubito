@@ -1,10 +1,10 @@
-NO textures/simonkraft/wet_sponge.xpm
-SO textures/simonkraft/wet_sponge.xpm
-WE textures/simonkraft/wet_sponge.xpm
-EA textures/simonkraft/wet_sponge.xpm
+NO ./textures/rokitas.xpm
+SO ./textures/cerca.xpm
+WE ./textures/cerca.xpm
+EA ./textures/rokitas.xpm
 
-F 164,169,20
-C 153,204,255
+F 19, 95, 0
+C 17, 96, 196
 
 111111111111111111111
 101000001000000000001

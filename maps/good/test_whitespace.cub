@@ -6,7 +6,7 @@
 
 
 
-NO textures/test/north.xpm
+NO ./textures/rokitas.xpm
 
 
 
@@ -14,12 +14,12 @@ NO textures/test/north.xpm
 
 
 
-SO textures/test/south.xpm
-                        WE textures/test/west.xpm
-        EA textures/test/east.xpm            
+SO ./textures/cerca.xpm
+                        WE ./textures/cerca.xpm
+        EA ./textures/rokitas.xpm                            
 
-        F 20,           20,             20
-C 200,          200,200
+        F 19,           95,             0
+C 17,          96,196
 
 11111
 10001
@@ -36,6 +36,63 @@ C 200,          200,200
 11111           
 
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

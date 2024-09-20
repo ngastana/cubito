@@ -1,10 +1,10 @@
-NO textures/matrix.xpm
-SO textures/matrix.xpm
-WE textures/matrix.xpm
-EA textures/matrix.xpm
+NO ./textures/rokitas.xpm
+SO ./textures/cerca.xpm
+WE ./textures/cerca.xpm
+EA ./textures/rokitas.xpm
 
-F 0,0,0
-C 0,0,0
+F 19, 95, 0
+C 17, 96, 196
 
 111111111111111111111
 101000001000000000001

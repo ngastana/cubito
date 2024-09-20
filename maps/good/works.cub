@@ -1,17 +1,17 @@
-   WE                            textures/wolfenstein/grey_stone.xpm
-NO      textures/wolfenstein/purple_stone.xpm
+   WE                            ./textures/cerca.xpm
+NO      ./textures/rokitas.xpm
 
 
 
-SO textures/wolfenstein/red_brick.xpm
+SO ./textures/cerca.xpm
 
-F      17,    38,     64
+F      19,    95,     0
 
-EA textures/wolfenstein/wood.xpm
+EA ./textures/rokitas.xpm
 
 
 
-C 218, 234, 235
+C 17, 96, 196
 
 1111111111111111111111111
 10S0110000100000000000001
