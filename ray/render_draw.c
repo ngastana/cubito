@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_draw.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngastana < ngastana@student.42urduliz.c    +#+  +:+       +#+        */
+/*   By: emunoz < emunoz@student.42urduliz.com >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:06:39 by emunoz            #+#    #+#             */
-/*   Updated: 2024/09/20 09:37:10 by ngastana         ###   ########.fr       */
+/*   Updated: 2024/09/20 14:02:02 by emunoz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_wall_h(int ray, int start, int end, t_game *cube)
 		j = (int)tex_pos % IMG_HEIGHT;
 		if (cube->ray_length < 1)
 			j = (int)(tex_pos * cube->ray_length) % IMG_HEIGHT;
-		color = *(unsigned int *)(img_data + ((int) j * cube->mlx->size_line_t \
+		color = *(unsigned int *)(img_data + ((int)j * cube->mlx->size_line_t \
 		+ ((int)(cube->x_wall_h * IMG_WIDTH)) * (cube->mlx->bpp_t / 8)));
 		tex_pos += step;
 		ft_pixel_put(ray, start - 1, color, cube);
@@ -80,7 +80,7 @@ void	ft_wall_v(int ray, int start, int end, t_game *cube)
 		&cube->mlx->size_line_t, &cube->mlx->endian_t);
 	tex_pos = 0;
 	step = (double)IMG_HEIGHT / (end - start);
-	cube->x_wall_v = fmod(cube->x_wall_v, 1.0);
+	cube->y_wall_v = fmod(cube->y_wall_v, 1.0);
 	while ((++start - 1) < end)
 	{
 		j = (int)tex_pos % IMG_HEIGHT;
